@@ -440,7 +440,9 @@ public abstract class TokenCompleteTextView extends MultiAutoCompleteTextView im
                 for (TokenImageSpan span: spans) {
                     int spanEnd = text.getSpanEnd(span);
                     if (selStart <= spanEnd && text.getSpanStart(span) < selStart) {
-                        setSelection(spanEnd + 1);
+                        try {
+                            setSelection(spanEnd + 1);
+                        } catch (IndexOutOfBoundsException e) { }
                         return;
                     }
                 }
